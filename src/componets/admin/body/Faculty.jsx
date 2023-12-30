@@ -4,7 +4,7 @@ import {
   DELETE_FACULTY_PROGESS,
   GET_FACULTY_PROGESS,
   POST_FACULTY_PROGESS,
-} from "../../../redux-saga/admin/action/action";
+} from "../../../redux-saga/faculty/action/action";
 
 const Faculty = () => {
   const dispatch = useDispatch();
@@ -17,26 +17,26 @@ const Faculty = () => {
   }, []);
 
   // POST
-  const [add, setadd] = useState({
-    faculty_name: "",
-    department: "",
-    username: "",
-    password: "",
-    gender: "",
-  });
+  // const [add, setadd] = useState({
+  //   faculty_name: "",
+  //   department: "",
+  //   username: "",
+  //   password: "",
+  //   gender: "",
+  // });
 
-  const changedata = (e) => {
-    setadd({ ...add, [e.target.name]: e.target.value });
-  };
-  const submit = () => {
-    dispatch({ type: POST_FACULTY_PROGESS, paylod: add });
-  };
+  // const changedata = (e) => {
+  //   setadd({ ...add, [e.target.name]: e.target.value });
+  // };
+  // const submit = () => {
+  //   dispatch({ type: POST_FACULTY_PROGESS, paylod: add });
+  // };
 
   // delete
 
-  const Deletefaculty = (id) => {
-    dispatch({ type: DELETE_FACULTY_PROGESS, paylod: id });
-  };
+  // const Deletefaculty = (id) => {
+  //   dispatch({ type: DELETE_FACULTY_PROGESS, paylod: id });
+  // };
 
   return (
     <div>

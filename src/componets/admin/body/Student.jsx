@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_STUDENT_PROGESS } from "../../../redux-saga/admin/action/action";
+import { GET_STUDENT_PROGESS } from "../../../redux-saga/student/action/action";
 
 const Student = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.facultyReducer.Student);
+  const data = useSelector((state) => state.StudentReducer.Student);
 
   useEffect(() => {
     dispatch({ type: GET_STUDENT_PROGESS });

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { GET_FACULTY_PROGESS, GET_STUDENT_PROGESS } from '../../redux-saga/admin/action/action'
+import { GET_FACULTY_PROGESS} from '../../redux-saga/faculty/action/action'
+import { GET_STUDENT_PROGESS } from '../../redux-saga/student/action/action'
 
 const Asidebar = ({data}) => {
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { POST_FACULTY_PROGESS } from "../../../redux-saga/admin/action/action";
+import { POST_FACULTY_PROGESS } from "../../../redux-saga/faculty/action/action";
 
 const Subadmins = () => {
 

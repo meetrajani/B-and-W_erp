@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import facultyReducer from "./admin/reducer/reducer"
+import facultyReducer from "./faculty/reducer/reducer"
+import StudentReducer from "./student/reducer/reducer"
 
 const rootReducer = combineReducers({
-    facultyReducer
+    facultyReducer,StudentReducer
 })
 
 export default rootReducer
