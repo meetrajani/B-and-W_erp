@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_STUDENT_PROGESS } from "../../../redux-saga/student/action/action";
 
 const Studentsubadmin = () => {
 
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.StudentReducer.Student);
+
+  // GET
+
+  useEffect(() => {
+    dispatch({ type: GET_STUDENT_PROGESS });
+  }, []);
+
   // POST
-  const [add, setadd] = useState({
-    faculty_name: "",
-    department: "",
-    username: "",
-    password: "",
-    gender: "",
-  });
+  const [add, setadd] = useState([]);
 
   const changedata = (e) => {
     setadd({ ...add, [e.target.name]: e.target.value });
@@ -44,7 +49,7 @@ const Studentsubadmin = () => {
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLabel">
-                      Modal title
+                      Add Student
                     </h5>
                     <button
                       type="button"
@@ -56,38 +61,26 @@ const Studentsubadmin = () => {
                   <div className="modal-body">
                     <div className="p-2">
                       <label className="form-label fw-bold">
-                        Faculty Name :{" "}
+                        Enter Your Name :{" "}
                       </label>
                       <input
                         type="text"
-                        name="faculty_name"
+                        name="student_name"
                         onChange={changedata}
                         className="form-control mt-2"
-                        placeholder="Faculty Name"
+                        placeholder="Student Name"
                         required
                       />
 
                       <label className="form-label mt-3 fw-bold">
-                        User Name :{" "}
+                        Enter Course :{" "}
                       </label>
                       <input
                         type="text"
-                        name="username"
+                        name="course"
                         onChange={changedata}
                         className="form-control mt-2"
-                        placeholder="name"
-                        required
-                      />
-
-                      <label className="form-label mt-3 fw-bold">
-                        Department :{" "}
-                      </label>
-                      <input
-                        name="department"
-                        onChange={changedata}
-                        type="text"
-                        className="form-control mt-2"
-                        placeholder="Department"
+                        placeholder="Course Name"
                         required
                       />
 
@@ -100,36 +93,7 @@ const Studentsubadmin = () => {
                         type="password"
                         className="form-control mt-2"
                         placeholder="*****"
-                        required
-                      />
-
-                      <div>
-                        <label className="form-label mt-3 fw-bold">
-                          Gender :{" "}
-                        </label>
-                        <div className="form-check">
-                          <input
-                            onChange={changedata}
-                            className="form-check-input mt-2"
-                            name="gender"
-                            value="male"
-                            id="flexRadioDefault1"
-                            type="radio"
-                          />
-                          <label className="form-check-label">Male</label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            onChange={changedata}
-                            className="form-check-input mt-2"
-                            type="radio"
-                            value="female"
-                            name="gender"
-                            id="flexRadioDefault2"
-                          />
-                          <label className="form-check-label">Female</label>
-                        </div>
-                      </div>
+                        required/>
                     </div>
                   </div>
                   <div className="modal-footer">
@@ -171,16 +135,26 @@ const Studentsubadmin = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {data?.map((e, index) => (
+                {data?.map((e, index) => (
                   <tr
                     className="bg-white text-center border-bottom"key={index}
                   >
                     <td className="px-6 py-4 font-weight-bold">{index + 1}</td>
-                    <td className="px-6 py-4">{e.username}</td>
-                    <td className="px-6 py-4">{e.department}</td>
-                    <td className="px-6 py-4">{e.gender}</td>
+                    <td className="px-6 py-4">{e.gr_id}</td>
+                    <td className="px-6 py-4">{e.enrollment_number}</td>
+                    <td className="px-6 py-4">{e.student_name}</td>
+                    <td className="px-6 py-4">{e.course}</td>
+                    <td className="px-6 py-4">
+                    <button className="btn btn-outline-success">Edit</button>
+                      <button
+                        // onClick={() => Deletefaculty(e._id)}
+                        className="btn btn-outline-danger ms-2"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
-                ))} */}
+                ))}
               </tbody>
             </table>
           </div>

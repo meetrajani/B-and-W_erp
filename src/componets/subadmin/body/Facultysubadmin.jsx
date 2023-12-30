@@ -1,31 +1,35 @@
-import React, { useState } from "react";
-import { POST_FACULTY_PROGESS } from "../../../redux-saga/faculty/action/action";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import {
+  DELETE_FACULTY_PROGESS,
+  GET_FACULTY_PROGESS,
+  POST_FACULTY_PROGESS,
+} from "../../../redux-saga/faculty/action/action";
+import { useDispatch, useSelector } from "react-redux";
 
 const Facultysubadmin = () => {
-
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.facultyReducer.Faculty.data);
 
   // GET
 
-  // useEffect(() => {
-  //   dispatch({ type: GET_FACULTY_PROGESS });
-  // }, []);
+  useEffect(() => {
+    dispatch({ type: GET_FACULTY_PROGESS });
+  }, []);
 
   // POST
-  const [add, setadd] = useState({
-    faculty_name: "",
-    department: "",
-    username: "",
-    password: "",
-    gender: "",
-  });
+  const [add, setadd] = useState([]);
 
   const changedata = (e) => {
     setadd({ ...add, [e.target.name]: e.target.value });
   };
   const submit = () => {
-    console.log({ type: POST_FACULTY_PROGESS, paylod: add });
+    dispatch({ type: POST_FACULTY_PROGESS, paylod: add });
+  };
+
+  // delete
+
+  const Deletefaculty = (id) => {
+    dispatch({ type: DELETE_FACULTY_PROGESS, paylod: id });
   };
 
   return (
@@ -178,16 +182,26 @@ const Facultysubadmin = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {data?.map((e, index) => (
+                {data?.map((e, index) => (
                   <tr
-                    className="bg-white text-center border-bottom"key={index}
+                    className="bg-white text-center border-bottom"
+                    key={index}
                   >
                     <td className="px-6 py-4 font-weight-bold">{index + 1}</td>
                     <td className="px-6 py-4">{e.username}</td>
                     <td className="px-6 py-4">{e.department}</td>
                     <td className="px-6 py-4">{e.gender}</td>
+                    <td className="px-6 py-4">
+                      <button className="btn btn-outline-success">Edit</button>
+                      <button
+                        onClick={() => Deletefaculty(e._id)}
+                        className="btn btn-outline-danger ms-2"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
-                ))} */}
+                ))}
               </tbody>
             </table>
           </div>

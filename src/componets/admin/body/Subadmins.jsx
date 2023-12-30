@@ -3,13 +3,7 @@ import { POST_FACULTY_PROGESS } from "../../../redux-saga/faculty/action/action"
 
 const Subadmins = () => {
 
-  const [add, setadd] = useState({
-    faculty_name: "",
-    department: "",
-    username: "",
-    password: "",
-    gender: "",
-  });
+  const [add, setadd] = useState([]);
 
   const changedata = (e) => {
     setadd({ ...add, [e.target.name]: e.target.value });
