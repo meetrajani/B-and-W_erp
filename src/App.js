@@ -11,7 +11,7 @@ import Studentsubadmin from './componets/subadmin/body/Studentsubadmin';
 
 function App() {
 
-  let role = "admin"
+  let role = "subadmin"
 
   if(role === "admin"){
     return(
