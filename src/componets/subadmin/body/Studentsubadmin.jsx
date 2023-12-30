@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_STUDENT_PROGESS } from "../../../redux-saga/student/action/action";
+import { GET_STUDENT_PROGESS, POST_STUDENT_PROGESS } from "../../../redux-saga/student/action/action";
 
 const Studentsubadmin = () => {
 
@@ -20,11 +20,14 @@ const Studentsubadmin = () => {
     setadd({ ...add, [e.target.name]: e.target.value });
   };
   const submit = () => {
-    console.log(add);
+    dispatch({ type: POST_STUDENT_PROGESS, paylod: add });
   };
 
   return (
     <div>
+
+      {/* input data */}
+
       <div>
         <div>
           <div>
@@ -119,6 +122,8 @@ const Studentsubadmin = () => {
           </div>
         </div>
       </div>
+
+      {/* Sow Data */}
 
       <div>
         <div className="m-4 shadow rounded">
