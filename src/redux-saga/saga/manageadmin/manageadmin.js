@@ -11,14 +11,14 @@ import {
   POST_FACULTY_SUCCESS,
 } from "../../admin/action/action";
 
-// GET SUBADMIN
+// GET STUDENT
 
 export function* manageStudent(action) {
   try {
     const res = yield call(getStudent, action);
     const data = res.data
     const status = res.status
-    console.log(res);
+    // console.log(res);
     if (status === 200) {
       yield put({ type: GET_STUDENT_SUCCESS, data });
     } else {
@@ -54,7 +54,7 @@ export function* manageFacultyPost(action) {
     const res = yield call(postFaculty, action);
     const data = res.data
     const status = res.status
-    console.log(data);
+    // console.log(data);
     if (status === 201) {
       yield put({ type: POST_FACULTY_SUCCESS, data });
     } else {

@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { GET_FACULTY_PROGESS, GET_STUDENT_PROGESS } from '../../redux-saga/admin/action/action'
 
 const Asidebar = ({data}) => {
+
+    const dispatch=useDispatch()
+
+    useEffect(()=>{
+        if(data[0].role==="admin"){
+            dispatch({type:GET_FACULTY_PROGESS})
+            dispatch({type:GET_STUDENT_PROGESS})
+        }else if(data[0].role==="subadmin"){
+            dispatch({type:GET_FACULTY_PROGESS})
+            dispatch({type:GET_STUDENT_PROGESS})
+        }
+    },[])
+
     return (
         <div>
             <div>

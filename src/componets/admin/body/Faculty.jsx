@@ -16,8 +16,6 @@ const Faculty = () => {
     dispatch({ type: GET_FACULTY_PROGESS });
   }, []);
 
-  console.log(data);
-
   // POST
   const [add, setadd] = useState({
     faculty_name: "",
@@ -42,8 +40,10 @@ const Faculty = () => {
 
   return (
     <div>
-      <div>
-        {/* Button trigger modal */}
+      {/* <div>
+
+        Button trigger modal
+
         <button
           type="button"
           className="btn btn-outline-success m-4"
@@ -52,7 +52,9 @@ const Faculty = () => {
         >
           ADD
         </button>
-        {/* Modal */}
+
+        Modal
+
         <div
           className="modal fade"
           id="exampleModal"
@@ -75,13 +77,13 @@ const Faculty = () => {
               </div>
               <div className="modal-body">
                 <div className="p-2">
-                  <label className="form-label fw-bold">Name : </label>
+                  <label className="form-label fw-bold">Faculty Name : </label>
                   <input
                     type="text"
                     name="faculty_name"
                     onChange={changedata}
                     className="form-control mt-2"
-                    placeholder="name"
+                    placeholder="Faculty Name"
                     required
                   />
 
@@ -166,9 +168,9 @@ const Faculty = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="table-responsive shadow-md rounded-lg">
+      {/* <div className="table-responsive shadow-md rounded-lg">
         <table className="table table-sm table-striped text-left">
           <thead className="text-xs text-white text-center bg-light">
             <tr>
@@ -199,6 +201,31 @@ const Faculty = () => {
             ))}
           </tbody>
         </table>
+      </div> */}
+
+      <div className="m-4 shadow rounded">
+        <div className="table-responsive shadow-md rounded-lg">
+          <table className="table table-striped text-center">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Gender</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map((e, index) => (
+                <tr className="bg-white text-center border-bottom" key={index}>
+                  <td className="px-6 py-4 font-weight-bold">{index + 1}</td>
+                  <td className="px-6 py-4">{e.username}</td>
+                  <td className="px-6 py-4">{e.department}</td>
+                  <td className="px-6 py-4">{e.gender}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -1,26 +1,31 @@
 export const admin=[
     {
         name:"subadmin",
-        path:"/"
+        path:"/subadmin",
+        role:"admin"
     },
     {
         name:"faculty",
-        path:"/faculty"
+        path:"/faculty",
+        role:"admin"
     },
     {
         name: "student",
-        path: "/student"
+        path: "/student",
+        role:"admin"
     }
 ]
 
 export const subadminsidebar=[
     {
         name:"faculty",
-        path:"/faculty"
+        path:"/subadmin/faculty",
+        role:"subadmin"
     },
     {
         name:"student",
-        path:"/student"
+        path:"/subadmin/student",
+        role:"subadmin"
     }
 ]
 
