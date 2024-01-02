@@ -35,7 +35,7 @@ export function* manageFacultyPost(action) {
     const data = res.data
     const status = res.status
     // console.log(data);
-    if (status === 201) {
+    if (status === 200 ||status === 201) {
       yield put({ type: POST_FACULTY_SUCCESS, data });
     } else {
       yield put({ type: POST_FACULTY_ERROR, data });

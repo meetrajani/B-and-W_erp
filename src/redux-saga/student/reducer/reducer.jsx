@@ -5,7 +5,7 @@ import { GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDE
   
     // GET STUDENT
   
-    Student: [],
+    student: [],
     getstudentprogress: false,
     getstudenterror: null,
 
@@ -31,8 +31,8 @@ import { GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDE
       case GET_STUDENT_SUCCESS: {
         return {
           ...state,
-          dataIsLoded: true,
-          Student: action.data,
+          dataIsLoded: false,
+          student: action.data,
         };
       }
       case GET_STUDENT_ERROR: {
@@ -53,15 +53,15 @@ import { GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDE
       case POST_STUDENT_SUCCESS: {
         return {
           ...state,
-          dataIsLoded: true,
-          Student: state.Student.concat(action.data),
+          dataIsLoded: false,
+          student: state.student.concat(action.data),
         };
       }
       case POST_STUDENT_ERROR: {
         return {
           ...state,
-          POSTstudenterror: action.data,
-        };
+          poststudenterror: action.data,
+          };
       }
   
       default: {

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_STUDENT_PROGESS, POST_STUDENT_PROGESS } from "../../../redux-saga/student/action/action";
+import {
+  GET_STUDENT_PROGESS,
+  POST_STUDENT_PROGESS,
+} from "../../../redux-saga/student/action/action";
 
 const Studentsubadmin = () => {
-
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.StudentReducer.Student);
+  const student = useSelector((state) => state.StudentReducer.student);
 
   // GET
 
@@ -14,18 +16,23 @@ const Studentsubadmin = () => {
   }, []);
 
   // POST
-  const [add, setadd] = useState([]);
+  const [data, setdata] = useState({
+    student_name: "",
+    course: "",
+    enrollment_number: JSON.stringify(Math.floor(Math.random() * 1000000000000)),
+    gr_id: JSON.stringify(Math.floor(Math.random() * 10000)),
+    password: "",
+  });
 
   const changedata = (e) => {
-    setadd({ ...add, [e.target.name]: e.target.value });
+    setdata({ ...data, [e.target.name]: e.target.value });
   };
   const submit = () => {
-    dispatch({ type: POST_STUDENT_PROGESS, paylod: add });
+    dispatch({ type: POST_STUDENT_PROGESS, paylod: data });
   };
 
   return (
     <div>
-
       {/* input data */}
 
       <div>
@@ -96,7 +103,8 @@ const Studentsubadmin = () => {
                         type="password"
                         className="form-control mt-2"
                         placeholder="*****"
-                        required/>
+                        required
+                      />
                     </div>
                   </div>
                   <div className="modal-footer">
@@ -140,9 +148,10 @@ const Studentsubadmin = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.map((e, index) => (
+                {student?.map((e, index) => (
                   <tr
-                    className="bg-white text-center border-bottom"key={index}
+                    className="bg-white text-center border-bottom"
+                    key={index}
                   >
                     <td className="px-6 py-4 font-weight-bold">{index + 1}</td>
                     <td className="px-6 py-4">{e.gr_id}</td>
@@ -150,7 +159,7 @@ const Studentsubadmin = () => {
                     <td className="px-6 py-4">{e.student_name}</td>
                     <td className="px-6 py-4">{e.course}</td>
                     <td className="px-6 py-4">
-                    <button className="btn btn-outline-success">Edit</button>
+                      <button className="btn btn-outline-success">Edit</button>
                       <button
                         // onClick={() => Deletefaculty(e._id)}
                         className="btn btn-outline-danger ms-2"

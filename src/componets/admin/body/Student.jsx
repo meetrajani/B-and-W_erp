@@ -4,7 +4,7 @@ import { GET_STUDENT_PROGESS } from "../../../redux-saga/student/action/action";
 
 const Student = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.StudentReducer.Student);
+  const student = useSelector((state) => state.StudentReducer.student);
 
   useEffect(() => {
     dispatch({ type: GET_STUDENT_PROGESS });
@@ -24,7 +24,7 @@ const Student = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((e, index) => (
+              {student?.map((e, index) => (
                 <tr className="bg-white text-center border-bottom" key={index}>
                   <td className="px-6 py-4 font-weight-bold">{index + 1}</td>
                   <td className="px-6 py-4">{e.gr_id}</td>
