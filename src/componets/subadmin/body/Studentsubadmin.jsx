@@ -31,6 +31,12 @@ const Studentsubadmin = () => {
     dispatch({ type: POST_STUDENT_PROGESS, paylod: data });
   };
 
+  // DELETE
+
+  const Deletefaculty = (_id) =>{
+    console.log(_id);
+  }
+
   return (
     <div>
       {/* input data */}
@@ -161,7 +167,7 @@ const Studentsubadmin = () => {
                     <td className="px-6 py-4">
                       <button className="btn btn-outline-success">Edit</button>
                       <button
-                        // onClick={() => Deletefaculty(e._id)}
+                        onClick={() => Deletefaculty(e._id)}
                         className="btn btn-outline-danger ms-2"
                       >
                         Delete
