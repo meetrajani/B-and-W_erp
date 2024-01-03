@@ -1,4 +1,4 @@
-import { GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDENT_ERROR, POST_STUDENT_PROGESS, POST_STUDENT_SUCCESS } from "../action/action";
+import { DELETE_STUDENT_ERROR, DELETE_STUDENT_PROGESS, DELETE_STUDENT_SUCCESS, GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDENT_ERROR, POST_STUDENT_PROGESS, POST_STUDENT_SUCCESS } from "../action/action";
 
   
   const initlSatus = {
@@ -13,6 +13,11 @@ import { GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDE
 
     poststudentprogress: false,
     poststudenterror: null,
+
+    // DELETE STUDENT
+
+    deletestudentprogress: false,
+    deletestudenterror: null,
 
     dataIsLodad : true,
   };
@@ -61,6 +66,28 @@ import { GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDE
         return {
           ...state,
           poststudenterror: action.data,
+          };
+      }
+
+      // DELETE STUDENT
+
+      case DELETE_STUDENT_PROGESS: {
+        return {
+          ...state,
+          deletestudentprogress: true,
+        };
+      }
+      case DELETE_STUDENT_SUCCESS: {
+        return {
+          ...state,
+          dataIsLoded: false,
+          student: state.student.filter((e)=>e._id!==action.data),
+        };
+      }
+      case DELETE_STUDENT_ERROR: {
+        return {
+          ...state,
+          deletestudenterror: action.data,
           };
       }
   

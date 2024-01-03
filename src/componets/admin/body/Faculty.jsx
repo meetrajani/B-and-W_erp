@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  DELETE_FACULTY_PROGESS,
-  GET_FACULTY_PROGESS,
-  POST_FACULTY_PROGESS,
-} from "../../../redux-saga/faculty/action/action";
+import {GET_FACULTY_PROGESS} from "../../../redux-saga/faculty/action/action";
 
 const Faculty = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.facultyReducer.Faculty.data);
+  const faculty = useSelector((state) => state.facultyReducer.Faculty);
 
   // GET
 
@@ -30,7 +26,7 @@ const Faculty = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((e, index) => (
+              {faculty?.map((e, index) => (
                 <tr className="bg-white text-center border-bottom" key={index}>
                   <td className="px-6 py-4 font-weight-bold">{index + 1}</td>
                   <td className="px-6 py-4">{e.username}</td>

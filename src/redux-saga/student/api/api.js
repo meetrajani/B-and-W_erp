@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, GET_STUDENT, POST_STUDENT } from "../../constant";
+import { BASE_URL, DELETE_STUDENT, GET_STUDENT, POST_STUDENT } from "../../constant";
 
 // GET STUDENT
 
@@ -23,4 +23,16 @@ export const postStudent = (action) => {
         return { data, status };
       })
       .catch((err) => console.log(err));
+};
+
+// DELETE STUDENT
+
+export const deleteStudent = (action) => {
+  return axios.delete(BASE_URL + DELETE_STUDENT+action.paylod).then((res) => {
+      const data = action.paylod;
+      const status = res.status;
+      // console.log(res);
+      return { data, status };
+    })
+    .catch((err) => console.log(err));
 };

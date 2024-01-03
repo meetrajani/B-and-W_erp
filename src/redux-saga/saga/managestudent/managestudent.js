@@ -1,6 +1,8 @@
 import { call, put } from "redux-saga/effects";
-import { getStudent, postStudent,} from "../../student/api/api";
+import { deleteStudent, getStudent, postStudent,} from "../../student/api/api";
 import {
+  DELETE_STUDENT_ERROR,
+  DELETE_STUDENT_SUCCESS,
   GET_STUDENT_ERROR,
   GET_STUDENT_SUCCESS,
   POST_STUDENT_ERROR,
@@ -40,5 +42,23 @@ export function* manageStudentpost(action) {
     }
   } catch (e) {
     yield put({ type: POST_STUDENT_ERROR, e });
+  }
+}
+
+// DELETE STUDENT
+
+export function* manageStudentdelete(action) {
+  try {
+    const res = yield call(deleteStudent, action);
+    const data = res.data
+    const status = res.status
+    // console.log(res);
+    if (status === 200 ||status === 201) {
+      yield put({ type: DELETE_STUDENT_SUCCESS, data });
+    } else {
+      yield put({ type: DELETE_STUDENT_ERROR, data });
+    }
+  } catch (e) {
+    yield put({ type: DELETE_STUDENT_ERROR, e });
   }
 }

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Facultysubadmin = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.facultyReducer.Faculty.data);
+  const faculty = useSelector((state) => state.facultyReducer.Faculty);
 
   // GET
 
@@ -17,13 +17,20 @@ const Facultysubadmin = () => {
   }, []);
 
   // POST
-  const [add, setadd] = useState([]);
+  const [add, setadd] = useState({});
 
   const changedata = (e) => {
     setadd({ ...add, [e.target.name]: e.target.value });
   };
   const submit = () => {
     dispatch({ type: POST_FACULTY_PROGESS, paylod: add });
+    setadd({
+      faculty_name: "",
+      department: "",
+      username: "",
+      password: "",
+      gender: "",
+    });
   };
 
   // delete
@@ -182,7 +189,7 @@ const Facultysubadmin = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.map((e, index) => (
+                {faculty?.map((e, index) => (
                   <tr
                     className="bg-white text-center border-bottom"
                     key={index}

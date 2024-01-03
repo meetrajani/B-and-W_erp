@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  DELETE_STUDENT_PROGESS,
   GET_STUDENT_PROGESS,
   POST_STUDENT_PROGESS,
 } from "../../../redux-saga/student/action/action";
@@ -33,8 +34,9 @@ const Studentsubadmin = () => {
 
   // DELETE
 
-  const Deletefaculty = (_id) =>{
-    console.log(_id);
+  const Deletestudent = (id) =>{
+    dispatch({ type: DELETE_STUDENT_PROGESS,paylod:id})
+    // console.log(id);
   }
 
   return (
@@ -167,7 +169,7 @@ const Studentsubadmin = () => {
                     <td className="px-6 py-4">
                       <button className="btn btn-outline-success">Edit</button>
                       <button
-                        onClick={() => Deletefaculty(e._id)}
+                        onClick={() => Deletestudent(e._id)}
                         className="btn btn-outline-danger ms-2"
                       >
                         Delete

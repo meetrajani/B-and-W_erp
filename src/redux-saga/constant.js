@@ -6,6 +6,8 @@ export const GET_STUDENT = "/v1/student/list"
 
 export const POST_STUDENT = "/v1/student/create"
 
+export const DELETE_STUDENT = "/v1/student/delete/" //:studentId
+
 // Faculty
 
 export const GET_FACULTY = "/v1/faculty/list"

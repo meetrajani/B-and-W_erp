@@ -68,7 +68,7 @@ import {
         return {
           ...state,
           dataIsLoded: true,
-          Faculty: state.Faculty.concat(action.data),
+          Faculty: state.Faculty.concat(action.data.faculty),
         };
       }
       case POST_FACULTY_ERROR: {
@@ -89,8 +89,8 @@ import {
       case DELETE_FACULTY_SUCCESS: {
         return {
           ...state,
-          Faculty: state.Faculty.filter((e)=>e.id !== action.data),
-          dataIsLoded: true,
+          Faculty: state.Faculty.filter((e)=>e._id !== action.data),
+          dataIsLoded: false,
         };
       }
       case DELETE_FACULTY_ERROR: {

@@ -7,7 +7,7 @@ export const getFaculty = () => {
     return axios
       .get(BASE_URL + GET_FACULTY)
       .then((res) => {
-        const data = res.data;
+        const data = res.data.data;
         const status = res.status;
         // console.log(data);
         return { data, status };
@@ -19,7 +19,7 @@ export const getFaculty = () => {
   
   export const postFaculty = (action) => {
     return axios.post(BASE_URL + POST_FACULTY,action.paylod).then((res) => {
-        const data = res.data;
+        const data = res.data.data;
         const status = res.status;
         // console.log(data);
         return { data, status };
