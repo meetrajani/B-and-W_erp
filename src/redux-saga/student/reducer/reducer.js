@@ -1,4 +1,4 @@
-import { DELETE_STUDENT_ERROR, DELETE_STUDENT_PROGESS, DELETE_STUDENT_SUCCESS, GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDENT_ERROR, POST_STUDENT_PROGESS, POST_STUDENT_SUCCESS } from "../action/action";
+import { DELETE_STUDENT_ERROR, DELETE_STUDENT_PROGESS, DELETE_STUDENT_SUCCESS, GET_STUDENT_ERROR, GET_STUDENT_PROGESS, GET_STUDENT_SUCCESS, POST_STUDENT_ERROR, POST_STUDENT_PROGESS, POST_STUDENT_SUCCESS, UPDATE_STUDENT_ERROR, UPDATE_STUDENT_PROGESS, UPDATE_STUDENT_SUCCESS } from "../action/action";
 
   
   const initlSatus = {
@@ -18,6 +18,11 @@ import { DELETE_STUDENT_ERROR, DELETE_STUDENT_PROGESS, DELETE_STUDENT_SUCCESS, G
 
     deletestudentprogress: false,
     deletestudenterror: null,
+
+    // UPDATE STUDENT
+
+    updatestudentprogress: false,
+    updatestudenterror: null,
 
     dataIsLodad : true,
   };
@@ -88,6 +93,34 @@ import { DELETE_STUDENT_ERROR, DELETE_STUDENT_PROGESS, DELETE_STUDENT_SUCCESS, G
         return {
           ...state,
           deletestudenterror: action.data,
+          };
+      }
+
+      // UPDATE STUDENT
+
+      case UPDATE_STUDENT_PROGESS: {
+        return {
+          ...state,
+          updatestudentprogress: true,
+        };
+      }
+      case UPDATE_STUDENT_SUCCESS: {
+        return {
+          ...state,
+          dataIsLoded: false,
+          student : state.student.map((i)=>{
+            if(i._id === action.data._id){
+                return {...i,...action.data}
+            }else{
+                return i
+            }
+        })
+        };
+      }
+      case UPDATE_STUDENT_ERROR: {
+        return {
+          ...state,
+          updatestudenterror: action.data,
           };
       }
   

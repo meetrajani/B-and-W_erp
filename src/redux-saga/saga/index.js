@@ -1,13 +1,15 @@
 import { all } from "redux-saga/effects";
-import { rootReducerFaculty, rootReducerFacultyDelete, rootReducerFacultyPost} from "./root/rootfaculty";
-import { rootReducerStudent, rootReducerStudentdelete, rootReducerStudentpost } from "./root/rootstudent";
+import { rootReducerFacultUpdate, rootReducerFaculty, rootReducerFacultyDelete, rootReducerFacultyPost} from "./root/rootfaculty";
+import { rootReducerStudent, rootReducerStudentdelete, rootReducerStudentpost, rootReducerStudentupdate } from "./root/rootstudent";
 
 export function* rootindex() {
     yield all ([rootReducerFaculty(),
         rootReducerFacultyDelete(),
         rootReducerFacultyPost(),
+        rootReducerFacultUpdate(),
         rootReducerStudent(),
         rootReducerStudentpost(),
-        rootReducerStudentdelete()
+        rootReducerStudentdelete(),
+        rootReducerStudentupdate()
     ])
 }

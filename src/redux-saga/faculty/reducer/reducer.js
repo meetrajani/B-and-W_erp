@@ -8,6 +8,9 @@ import {
     POST_FACULTY_ERROR,
     POST_FACULTY_PROGESS,
     POST_FACULTY_SUCCESS,
+    UPDATE_FACULTY_ERROR,
+    UPDATE_FACULTY_PROGESS,
+    UPDATE_FACULTY_SUCCESS,
   } from "../action/action";
   
   const initlSatus = {
@@ -27,6 +30,11 @@ import {
   
     deletefacultyprogress: false,
     deletefacultyerror: null,
+
+    // UPDATE FACULTY
+  
+    updatefacultyprogress: false,
+    updatefacultyerror: null,
   
     dataIsLoded: true,
   };
@@ -97,6 +105,34 @@ import {
         return {
           ...state,
           deletefacultyerror: action.data,
+        };
+      }
+
+      // UPDATE FACULTY
+  
+      case UPDATE_FACULTY_PROGESS: {
+        return {
+          ...state,
+          updatefacultyprogress: true,
+        };
+      }
+      case UPDATE_FACULTY_SUCCESS: {
+        return {
+          dataIsLoded: false,
+          ...state,
+          Faculty: state.Faculty.map((i)=>{
+            if(i._id === action.data._id){
+                return {...i,...action.data}
+            }else{
+                return i
+            }
+        }),
+        };
+      }
+      case UPDATE_FACULTY_ERROR: {
+        return {
+          ...state,
+          updatefacultyerror: action.data,
         };
       }
   

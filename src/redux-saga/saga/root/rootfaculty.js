@@ -1,6 +1,6 @@
 import { takeLatest } from "redux-saga/effects";
-import { DELETE_FACULTY_PROGESS, GET_FACULTY_PROGESS, POST_FACULTY_PROGESS } from "../../faculty/action/action";
-import { manageFaculty, manageFacultyDelete, manageFacultyPost} from "../managefaculty/managefaculty";
+import { DELETE_FACULTY_PROGESS, GET_FACULTY_PROGESS, POST_FACULTY_PROGESS, UPDATE_FACULTY_PROGESS } from "../../faculty/action/action";
+import { manageFaculty, manageFacultyDelete, manageFacultyPost, manageFacultyupdate} from "../managefaculty/managefaculty";
 
 
 // FACULTY
@@ -15,4 +15,8 @@ export function* rootReducerFacultyPost() {
 
 export function* rootReducerFacultyDelete() {
     yield takeLatest(DELETE_FACULTY_PROGESS,manageFacultyDelete)
+}
+
+export function* rootReducerFacultUpdate() {
+    yield takeLatest(UPDATE_FACULTY_PROGESS,manageFacultyupdate)
 }

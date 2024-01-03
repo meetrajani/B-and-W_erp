@@ -3,6 +3,7 @@ import {
   DELETE_FACULTY_PROGESS,
   GET_FACULTY_PROGESS,
   POST_FACULTY_PROGESS,
+  UPDATE_FACULTY_PROGESS,
 } from "../../../redux-saga/faculty/action/action";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -37,6 +38,19 @@ const Facultysubadmin = () => {
 
   const Deletefaculty = (id) => {
     dispatch({ type: DELETE_FACULTY_PROGESS, paylod: id });
+  };
+
+  // edit faculty
+
+  const [Udata, setUdata] = useState({});
+
+  const changeUdata = (e) => {
+    setUdata({ ...Udata, [e.target.name]: e.target.value });
+  };
+
+  const Feditdata = () => {
+    console.log(Udata);
+    dispatch({type:UPDATE_FACULTY_PROGESS,paylod:Udata})
   };
 
   return (
@@ -172,6 +186,132 @@ const Facultysubadmin = () => {
               </div>
             </div>
           </div>
+
+          {/* UPDATE FACULTY */}
+
+          <div
+            className="modal fade"
+            id="example"
+            tabIndex={-1}
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-lg">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    UPDATE FACULTY
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  />
+                </div>
+                <div className="modal-body">
+                  <div className="p-2">
+                    <label className="form-label fw-bold">
+                      Faculty Name :{" "}
+                    </label>
+                    <input
+                      type="text"
+                      name="faculty_name"
+                      value={Udata.faculty_name}
+                      onChange={changeUdata}
+                      className="form-control mt-2"
+                      placeholder="Faculty Name"
+                      required
+                    />
+
+                    <label className="form-label mt-3 fw-bold">
+                      User Name :{" "}
+                    </label>
+                    <input
+                      type="text"
+                      name="username"
+                      value={Udata.username}
+                      onChange={changeUdata}
+                      className="form-control mt-2"
+                      placeholder="name"
+                      required
+                    />
+
+                    <label className="form-label mt-3 fw-bold">
+                      Department :{" "}
+                    </label>
+                    <input
+                      name="department"
+                      value={Udata.department}
+                      onChange={changeUdata}
+                      type="text"
+                      className="form-control mt-2"
+                      placeholder="Department"
+                      required
+                    />
+
+                    <label className="form-label mt-3 fw-bold">
+                      Password :{" "}
+                    </label>
+                    <input
+                      name="password"
+                      value={Udata.password}
+                      onChange={changeUdata}
+                      type="password"
+                      className="form-control mt-2"
+                      placeholder="*****"
+                      required
+                    />
+
+                    <div>
+                      <label className="form-label mt-3 fw-bold">
+                        Gender :{" "}
+                      </label>
+                      <div className="form-check">
+                        <input
+                          onChange={changeUdata}
+                          className="form-check-input mt-2"
+                          name="gender"
+                          value="male"
+                          id="flexRadioDefault1"
+                          type="radio"
+                        />
+                        <label className="form-check-label">Male</label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          onChange={changeUdata}
+                          className="form-check-input mt-2"
+                          type="radio"
+                          value="female"
+                          name="gender"
+                          id="flexRadioDefault2"
+                        />
+                        <label className="form-check-label">Female</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={Feditdata}
+                    data-bs-dismiss="modal"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -199,7 +339,14 @@ const Facultysubadmin = () => {
                     <td className="px-6 py-4">{e.department}</td>
                     <td className="px-6 py-4">{e.gender}</td>
                     <td className="px-6 py-4">
-                      <button className="btn btn-outline-success">Edit</button>
+                      <button
+                        className="btn btn-outline-success"
+                        onClick={() => setUdata(e)}
+                        data-bs-toggle="modal"
+                        data-bs-target="#example"
+                      >
+                        Edit
+                      </button>
                       <button
                         onClick={() => Deletefaculty(e._id)}
                         className="btn btn-outline-danger ms-2"

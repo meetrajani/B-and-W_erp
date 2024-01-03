@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { deleteFaculty, getFaculty, postFaculty } from "../../faculty/api/api";
+import { deleteFaculty, getFaculty, postFaculty, updateFaculty } from "../../faculty/api/api";
 import {
   DELETE_FACULTY_ERROR,
   DELETE_FACULTY_SUCCESS,
@@ -7,6 +7,8 @@ import {
   GET_FACULTY_SUCCESS,
   POST_FACULTY_ERROR,
   POST_FACULTY_SUCCESS,
+  UPDATE_FACULTY_ERROR,
+  UPDATE_FACULTY_SUCCESS,
 } from "../../faculty/action/action";
 
 // GET FACULLTY
@@ -60,5 +62,22 @@ export function* manageFacultyDelete(action) {
     }
   } catch (e) {
     yield put({ type: DELETE_FACULTY_ERROR, e });
+  }
+}
+
+// UPDATE 
+
+export function* manageFacultyupdate(action) {
+  try {
+    const res = yield call(updateFaculty, action);
+    const data = res.data
+    const status = res.status
+    if (status === 200 ||status === 201) {
+      yield put({ type: UPDATE_FACULTY_SUCCESS, data });
+    } else {
+      yield put({ type: UPDATE_FACULTY_ERROR, data });
+    }
+  } catch (e) {
+    yield put({ type: UPDATE_FACULTY_ERROR, e });
   }
 }

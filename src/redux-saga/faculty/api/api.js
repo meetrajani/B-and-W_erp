@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, DELETE_FACULTY, GET_FACULTY, POST_FACULTY } from "../../constant";
+import { BASE_URL, DELETE_FACULTY, GET_FACULTY, POST_FACULTY, UPDATE_FACULTY } from "../../constant";
 
 // GET FACULTY
 
@@ -33,6 +33,18 @@ export const getFaculty = () => {
         const data = action.paylod;
         const status = res.status;
         // console.log(data);
+        return { data, status };
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // UPDATE FACULTY
+
+  export const updateFaculty = (action) => {
+    return axios.put(BASE_URL + UPDATE_FACULTY+action.paylod._id,action.paylod).then((res) => {
+        const data = action.paylod;
+        const status = res.status;
+        // console.log(res);
         return { data, status };
       })
       .catch((err) => console.log(err));
