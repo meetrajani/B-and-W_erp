@@ -1,7 +1,18 @@
-import React, { useState } from "react";
-import { POST_FACULTY_PROGESS } from "../../../redux-saga/faculty/action/action";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_SUBADMIN_PROGESS, POST_SUBADMIN_PROGESS } from "../../../redux-saga/subadmin/action/action";
+import { DELETE_SUBADMIN_PROGESS } from "../../../redux-saga/subadmin/action/action";
 const Subadmins = () => {
+  const dispatch = useDispatch();
+  const subadmin = useSelector((state) => state.SubadminReducer.subadmin);
+
+  // GET SUBADMIN
+
+  useEffect(() => {
+    dispatch({ type: GET_SUBADMIN_PROGESS });
+  }, []);
+
+  // POST SUBADMIN
 
   const [add, setadd] = useState([]);
 
@@ -9,8 +20,16 @@ const Subadmins = () => {
     setadd({ ...add, [e.target.name]: e.target.value });
   };
   const submit = () => {
-    console.log({ type: POST_FACULTY_PROGESS, paylod: add });
+    dispatch({ type: POST_SUBADMIN_PROGESS, paylod: add });
   };
+
+
+  // DELETE SUBADMIN
+
+  const Deletesubadmin = (_id) =>{
+    dispatch({type: DELETE_SUBADMIN_PROGESS,paylod:_id})
+    // console.log(_id);
+  }
 
   return (
     <div>
@@ -49,7 +68,7 @@ const Subadmins = () => {
                 <div className="modal-body">
                   <div className="p-2">
                     <label className="form-label fw-bold">
-                      Faculty Name :{" "}
+                      Subadmin Name :{" "}
                     </label>
                     <input
                       type="text"
@@ -73,18 +92,6 @@ const Subadmins = () => {
                     />
 
                     <label className="form-label mt-3 fw-bold">
-                      Department :{" "}
-                    </label>
-                    <input
-                      name="department"
-                      onChange={changedata}
-                      type="text"
-                      className="form-control mt-2"
-                      placeholder="Department"
-                      required
-                    />
-
-                    <label className="form-label mt-3 fw-bold">
                       Password :{" "}
                     </label>
                     <input
@@ -95,34 +102,6 @@ const Subadmins = () => {
                       placeholder="*****"
                       required
                     />
-
-                    <div>
-                      <label className="form-label mt-3 fw-bold">
-                        Gender :{" "}
-                      </label>
-                      <div className="form-check">
-                        <input
-                          onChange={changedata}
-                          className="form-check-input mt-2"
-                          name="gender"
-                          value="male"
-                          id="flexRadioDefault1"
-                          type="radio"
-                        />
-                        <label className="form-check-label">Male</label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          onChange={changedata}
-                          className="form-check-input mt-2"
-                          type="radio"
-                          value="female"
-                          name="gender"
-                          id="flexRadioDefault2"
-                        />
-                        <label className="form-check-label">Female</label>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div className="modal-footer">
@@ -143,6 +122,45 @@ const Subadmins = () => {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Subadmin page */}
+
+          <div className="m-4 shadow rounded">
+            <div className="table-responsive shadow-md rounded-lg">
+              <table className="table table-striped text-center">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Subadmin Name</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subadmin?.map((e, index) => (
+                    <tr
+                      className="bg-white text-center border-bottom"
+                      key={index}
+                    >
+                      <td className="px-6 py-4 font-weight-bold">
+                        {index + 1}
+                      </td>
+                      <td className="px-6 py-4">{e.subadmin_name}</td>
+                      <td className="px-6 py-4">{e.username}</td>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => Deletesubadmin(e._id)}
+                          className="btn btn-outline-danger ms-2"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

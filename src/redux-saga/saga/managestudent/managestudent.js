@@ -56,12 +56,12 @@ export function* manageStudentdelete(action) {
     const status = res.status
     // console.log(res);
     if (status === 200 ||status === 201) {
-      yield put({ type: UPDATE_STUDENT_SUCCESS, data });
+      yield put({ type: DELETE_STUDENT_SUCCESS, data });
     } else {
-      yield put({ type: UPDATE_STUDENT_ERROR, data });
+      yield put({ type: DELETE_STUDENT_ERROR, data });
     }
   } catch (e) {
-    yield put({ type: UPDATE_STUDENT_ERROR, e });
+    yield put({ type: DELETE_STUDENT_ERROR, e });
   }
 }
 

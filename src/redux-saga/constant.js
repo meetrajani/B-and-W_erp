@@ -1,5 +1,13 @@
 export const BASE_URL = "http://13.235.248.55:3000"
 
+// SUBADMIN 
+
+export const GET_SUBADMIN = "/v1/subadmin/list"
+
+export const POST_SUBADMIN = "/v1/subadmin/create"
+
+export const DELETE_SUBADMIN = "/v1/subadmin/delete/" //:subadminId
+
 // STUDENT
 
 export const GET_STUDENT = "/v1/student/list"
