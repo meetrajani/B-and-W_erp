@@ -21,6 +21,7 @@ const Subadmins = () => {
   };
   const submit = () => {
     dispatch({ type: POST_SUBADMIN_PROGESS, paylod: add });
+    // console.log(add);
   };
 
 
@@ -72,10 +73,10 @@ const Subadmins = () => {
                     </label>
                     <input
                       type="text"
-                      name="faculty_name"
+                      name="subadmin_name"
                       onChange={changedata}
                       className="form-control mt-2"
-                      placeholder="Faculty Name"
+                      placeholder="subadmin Name"
                       required
                     />
 
